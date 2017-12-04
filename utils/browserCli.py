@@ -17,15 +17,16 @@ class browserClient(object):
         chromedriver = "C:\Program Files (x86)\chromedriver.exe"
         self.driver = webdriver.Chrome(chromedriver)
 
-    def setup(self):
-        driver = self.driver
+    def setup(self, driver):
         url = "https://uc.jcloud.com/login?returnUrl=https://xdata.jcloud.com/console_page"
         driver.maximize_window()
         driver.get(url)
         driver.implicitly_wait(10)
         driver.switch_to.frame("login_frame")
         driver.implicitly_wait(3)
+        driver.find_element_by_id("loginname").clear()
         driver.find_element_by_id("loginname").send_keys(user)
+        driver.find_element_by_id("nloginpwd").clear()
         driver.find_element_by_id("nloginpwd").send_keys(pwd)
         time.sleep(10)
         driver.find_element_by_id("paipaiLoginSubmit").click()
@@ -37,4 +38,4 @@ class browserClient(object):
     def close(self,driver):
         driver.close()
 
-browser_client = browserClient()
+br = browserClient()

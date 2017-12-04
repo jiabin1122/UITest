@@ -1,19 +1,21 @@
-__author__ = 'jiabin'
 # coding: utf-8
+
+from utils.browserCli import browserClient, br
+
+__author__ = 'jiabin'
 
 import os
 import time
-from utils.browserCli import browserClient, browser_client
 from utils.common import commonHttpClient
 
-browser_client.setup()
-driver = browser_client.driver
+
 filename = "6cols_100.txt"
+driver = br.driver
 
 class Test_up_file():
     def up_file(self):
         path  = os.path.join(os.getcwd(),"data",filename)
-        if driver.current_url != "https://xdata.jcloud.com/dataIntegration/index.html?dataCenter=bj_02":
+        if  driver.current_url != "https://xdata.jcloud.com/dataIntegration/index.html?dataCenter=bj_02":
             driver.get("https://xdata.jcloud.com/dataIntegration/index.html")
         driver.find_element_by_xpath("//ul[@class='show clearfix']/a/li").click()
         upload = driver.find_element_by_id("mylocalfile")
