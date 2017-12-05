@@ -36,6 +36,6 @@ class browserClient(object):
         save_cookies(cookies)
 
     def close(self,driver):
-        driver.close()
+        driver.quit()
 
 br = browserClient()
