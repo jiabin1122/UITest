@@ -3,4 +3,4 @@ __author__ = 'jiabin5'
 
 import pytest
 
-exit(pytest.main("-sq ./case"))
+exit(pytest.main("-sq ./case/test_nav"))
