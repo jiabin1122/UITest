@@ -1,6 +1,6 @@
 *.pyc
 .idea/
 .cache/
-account.txt
-runtest.py
 cookies.txt
+runtest.py
+aacount.txt
