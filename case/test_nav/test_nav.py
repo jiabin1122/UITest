@@ -9,10 +9,6 @@ __author__ = 'jiabin'
 
 driver = br.driver
 
-class ExpectedConditions(object):
-    pass
-
-
 class Test_nav():
     def test_console_page(self):
         """
