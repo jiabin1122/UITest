@@ -1,9 +1,12 @@
 # coding: utf-8
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import wait
 from utils import const
 from utils.action import nav_scroll_down, is_element_exist
 from utils.browserCli import br
 import time
+
+from utils.page import Page
 
 __author__ = 'jiabin'
 
@@ -14,8 +17,8 @@ class Test_nav():
         """
         访问数知控制台
         """
-        driver.get(const.console_page)
-        driver.find_element_by_xpath("//span[contains(text(),'数知控制台')]").click()
+        br.open(const.console_page)
+        br.click(By.XPATH, "//span[contains(text(),'数知控制台')]")
         time.sleep(2)
         assert driver.current_url == const.console_page
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'数知控制台')]")
@@ -24,7 +27,7 @@ class Test_nav():
         """
         访问数据集成
         """
-        driver.find_element_by_xpath("//span[contains(text(),'数据集成')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'数据集成')]")
         time.sleep(2)
         assert driver.current_url == const.dataIntegration
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'数据集成')]")
@@ -33,7 +36,7 @@ class Test_nav():
         """
         访问BI报表
         """
-        driver.find_element_by_xpath("//span[contains(text(),'BI报表')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'BI报表')]")
         time.sleep(2)
         assert driver.current_url == const.bi
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'BI报表')]")
@@ -42,7 +45,7 @@ class Test_nav():
         """
         访问数据计算服务
         """
-        driver.find_element_by_xpath("//span[contains(text(),'数据计算服务')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'数据计算服务')]")
         time.sleep(2)
         assert driver.current_url == const.instance
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'数据计算服务')]")
@@ -51,7 +54,7 @@ class Test_nav():
         """
         访问数据大屏
         """
-        driver.find_element_by_xpath("//span[contains(text(),'数据大屏')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'数据大屏')]")
         time.sleep(2)
         assert driver.current_url == const.bigscreen
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'数据大屏')]")
@@ -62,7 +65,7 @@ class Test_nav():
         """
         nav_scroll_down(driver)
         time.sleep(3)
-        driver.find_element_by_xpath("//span[contains(text(),'画像分析')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'画像分析')]")
         time.sleep(3)
         assert driver.current_url == const.profile
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'画像分析')]")
@@ -72,7 +75,7 @@ class Test_nav():
         访问JMR
         """
         nav_scroll_down(driver)
-        driver.find_element_by_xpath("//span[contains(text(),'JMR')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'JMR')]")
         time.sleep(3)
         assert driver.current_url == const.jmr
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'JMR')]")
@@ -82,7 +85,7 @@ class Test_nav():
         访问日志服务
         """
         nav_scroll_down(driver)
-        driver.find_element_by_xpath("//span[contains(text(),'日志服务')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'日志服务')]")
         time.sleep(3)
         assert driver.current_url == const.jls
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'日志服务')]")
@@ -92,7 +95,7 @@ class Test_nav():
         访问流数据中心
         """
         nav_scroll_down(driver)
-        driver.find_element_by_xpath("//span[contains(text(),'流数据中心')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'流数据中心')]")
         time.sleep(3)
         assert driver.current_url == const.streamhub
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'流数据中心')]")
@@ -102,7 +105,7 @@ class Test_nav():
         访问流计算
         """
         nav_scroll_down(driver)
-        driver.find_element_by_xpath("//span[contains(text(),'流计算')]").click()
+        br.click(By.XPATH, "//span[contains(text(),'流计算')]")
         time.sleep(3)
         assert driver.current_url == const.stream_compute
         assert is_element_exist(driver,"//li[@class='cur']/a/span[contains(text(),'流计算')]")

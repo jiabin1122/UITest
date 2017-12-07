@@ -1,9 +1,9 @@
-import yaml
-
-__author__ = 'jiabin5'
 # coding: utf-8
+__author__ = 'jiabin5'
 
-
+import yaml
+from selenium.webdriver.common.by import By
+from utils.page import Page
 from selenium import webdriver
 from utils.set_cookies import save_cookies
 import time
@@ -17,30 +17,28 @@ with open("./data/account.yaml", "r") as f :
     for key, value in user.items():
         userName, pwd = key, value
 
-class browserClient(object):
-    def __init__(self):
-        chromedriver = "C:\Program Files (x86)\chromedriver.exe"
-        self.driver = webdriver.Chrome(chromedriver)
+class browserClient(Page):
 
     def setup(self, driver):
-        url = "https://uc.jcloud.com/login?returnUrl=https://xdata.jcloud.com/console_page"
+        login_url = "https://uc.jcloud.com/login?returnUrl=https://xdata.jcloud.com/console_page"
         driver.maximize_window()
-        driver.get(url)
+        self.open(login_url)
         driver.implicitly_wait(10)
         driver.switch_to.frame("login_frame")
         driver.implicitly_wait(3)
-        driver.find_element_by_id("loginname").clear()
-        driver.find_element_by_id("loginname").send_keys(userName)
-        driver.find_element_by_id("nloginpwd").clear()
-        driver.find_element_by_id("nloginpwd").send_keys(pwd)
-        time.sleep(10)
-        driver.find_element_by_id("paipaiLoginSubmit").click()
+        self.send_keys(userName, By.ID,"loginname")
+        self.send_keys(pwd, By.ID,"nloginpwd")
+        time.sleep(8)
+        self.click(By.ID,"paipaiLoginSubmit")
         driver.implicitly_wait(10)
-        driver.find_element_by_xpath("//li[1]/a/dl/dd").click()
+        self.click(By.XPATH,"//li[1]/a/dl/dd")
         cookies = driver.get_cookies()
         save_cookies(cookies)
 
     def close(self,driver):
         driver.quit()
 
-br = browserClient()
+chromedriver = "C:\Program Files (x86)\chromedriver.exe"
+driver = webdriver.Chrome(chromedriver)
+
+br = browserClient(driver)
