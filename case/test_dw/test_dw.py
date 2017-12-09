@@ -73,6 +73,3 @@ class Test_dw():
         br.mouse_move(By.XPATH, "//dt/span[contains(text(),'...')]")
         br.mouse_click(By.XPATH, "//a[contains(text(),'删除')]")
         br.click(By.XPATH, "//a[contains(text(),'确定')]")
-
-
-
