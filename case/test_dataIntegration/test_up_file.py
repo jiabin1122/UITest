@@ -1,9 +1,8 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+# @Author  : Jiabin
 
-from utils.browserCli import browserClient, br
-
-__author__ = 'jiabin'
-
+from selenium.webdriver.common.by import By
+from utils.browserCli import br
 import os
 import time
 from utils.common import commonHttpClient
@@ -15,42 +14,44 @@ driver = br.driver
 class Test_up_file():
     def up_file(self):
         path  = os.path.join(os.getcwd(),"data",filename)
-        if  driver.current_url != "https://xdata.jcloud.com/dataIntegration/index.html?dataCenter=bj_02":
-            driver.get("https://xdata.jcloud.com/dataIntegration/index.html")
-        driver.find_element_by_xpath("//ul[@class='show clearfix']/a/li").click()
+        br.open("https://xdata.jcloud.com/dataIntegration/index.html")
+        br.click(By.XPATH, "//ul[@class='show clearfix']/a/li")
         upload = driver.find_element_by_id("mylocalfile")
         upload.send_keys(path)
-        driver.find_element_by_xpath("//a[@class='glBtn mr10']").click()
+        br.click(By.XPATH, "//a[@class='glBtn mr10']")
         time.sleep(1)
-        driver.find_element_by_xpath("//a[@class='glBtn mr10']").click()
+        br.click(By.XPATH, "//a[@class='glBtn mr10']")
 
     def test_up_to_tb(self):
+        '''
+        上传数据至数仓
+        '''
         Test_up_file().up_file()
-        driver.find_element_by_id("r-cn").click()
-        driver.find_element_by_xpath("//select[@class='select-box w335 overHidden']/option[@title='a_atest']").click()
+        br.click(By.ID, "r-cn")
+        br.click(By.XPATH, "//select[@class='select-box w335 overHidden']/option[@title='a_atest']")
         time.sleep(1)
-        driver.find_element_by_xpath("//select[@class='select-box w335 overHidden']/option[@title='jia_6cols']").click()
-        driver.implicitly_wait(3)
-        driver.find_element_by_xpath("//input[@type='checkbox']").click()
-        driver.find_element_by_xpath("//a[@class='blueLink mr10']").click()
-        time.sleep(3)
-        driver.find_element_by_xpath("//a[@class='glBtn mr10']").click()
-        alerttext = driver.find_element_by_xpath(" //div[@class='layui-layer-content']").text
+        br.click(By.XPATH, "//select[@class='select-box w335 overHidden']/option[@title='jia_6cols']")
+        time.sleep(5)
+        br.click(By.XPATH, "//input[@type='checkbox']")
+        br.click(By.XPATH, "//a[@class='blueLink mr10']")
+        time.sleep(500)
+        br.click(By.XPATH, "//a[@class='glBtn mr10']")
+        alerttext = br.find_element(By.XPATH, "//div[@class='layui-layer-content']").text
         assert "成功上传了100条记录， 总共100条记录！".decode("utf-8")  ==  alerttext
 
     def test_up_to_file(self):
         path = "/a_atest/" + filename
         data = {"pathName":path, "recursive":True}
-        re, status = commonHttpClient().http_request("POST", "map/file/deleteFileOrFolder.action", data)
+        re, status = commonHttpClient().http_request("POST", "dw/file/deleteFileOrFolder.action", data)
         print re
         Test_up_file().up_file()
-        driver.find_element_by_link_text("选择文件夹".decode("utf-8")).click()
+        br.click(By.PARTIAL_LINK_TEXT, "选择文件夹".decode("utf-8"))
         time.sleep(3)
-        driver.find_element_by_xpath("//li[@_path='/a_atest']/a/span").click()
-        driver.find_element_by_xpath("//a[@class='layui-layer-btn0']").click()
-        driver.find_element_by_xpath("//input[@class='inputMode w335 gray']").send_keys("file remark")
-        driver.find_element_by_xpath("//a[@class='glBtn mr10']").click()
+        br.click(By.XPATH, "//li[@_path='/a_atest']/a/span")
+        br.click(By.XPATH, "//a[@class='layui-layer-btn0']")
+        br.send_keys("file remark", By.XPATH, "//input[@class='inputMode w335 gray']")
+        br.click(By.XPATH, "//a[@class='glBtn mr10']")
         time.sleep(2)
-        alerttext = driver.find_element_by_xpath("//div[@class='layui-layer-content']").text
+        alerttext = br.find_element(By.XPATH, "//div[@class='layui-layer-content']").text
         assert "上传成功!".decode("utf-8")  ==  alerttext
 
