@@ -1,6 +1,5 @@
 # coding: utf-8
 #__author__ = 'jiabin'
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from utils import const
 from utils.action import is_element_exist
@@ -10,13 +9,15 @@ from utils.randomUtils import generate_random_string
 
 driver = br.driver
 sql = "select * from a_atest.jia_6cols"
+task_name = "jia_uitest_" + generate_random_string(5)
+task_name_rename = "jia_uitest_" + generate_random_string(5)
+task_name_save_as = task_name_rename + "_save_as"
 
 class Test_dw():
     def test_create_query_task(self):
         """
         新建sql查询脚本
         """
-        task_name = "jia_uitest_" + generate_random_string(5)
         br.open(const.instance)
         br.click(By.XPATH, "//div/a[@title='{0}']".format(userName))
         br.click(By.XPATH, "//a[contains(text(),'开发')]")
@@ -35,4 +36,7 @@ class Test_dw():
         br.click(By.XPATH, "//i[@class='i31']")
         assert is_element_exist(driver, "//h3[contains(text(),'{0}')]".format(task_name))
 
-    # def test_saveas_task(self):
+    def test_task_rename(self):
+        br.mouse_move(By.XPATH, "//h3[contains(text(),'{0}')]".format(task_name))
+        br.mouse_move(By.XPATH, "//dt/span[contains(text(),'...')]")
+        br.mouse_click(By.XPATH, "//a[contains(text(),'重命名')]")

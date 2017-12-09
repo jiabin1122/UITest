@@ -42,3 +42,8 @@ class Page(object):
         ActionChains(self.driver).move_to_element(content).perform()
         time.sleep(1)
         ActionChains(self.driver).click(content).perform()
+
+    def mouse_move(self, *loc):
+        content = self.driver.find_element(*loc)
+        ActionChains(self.driver).move_to_element(content).perform()
+        time.sleep(1)
