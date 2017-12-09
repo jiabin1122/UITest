@@ -23,15 +23,15 @@ class browserClient(Page):
         login_url = "https://uc.jcloud.com/login?returnUrl=https://xdata.jcloud.com/console_page"
         driver.maximize_window()
         self.open(login_url)
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(5)
         driver.switch_to.frame("login_frame")
         driver.implicitly_wait(3)
         self.send_keys(userName, By.ID,"loginname")
         self.send_keys(pwd, By.ID,"nloginpwd")
         time.sleep(8)
         self.click(By.ID,"paipaiLoginSubmit")
-        driver.implicitly_wait(10)
-        self.click(By.XPATH,"//li[1]/a/dl/dd")
+        driver.implicitly_wait(2)
+        self.click(By.XPATH, "//span[contains(text(),'数知控制台')]")
         cookies = driver.get_cookies()
         save_cookies(cookies)
 

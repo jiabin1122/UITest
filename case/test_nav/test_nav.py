@@ -17,7 +17,6 @@ class Test_nav():
         """
         访问数知控制台
         """
-        br.open(const.console_page)
         br.click(By.XPATH, "//span[contains(text(),'数知控制台')]")
         time.sleep(2)
         assert driver.current_url == const.console_page

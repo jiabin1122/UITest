@@ -32,10 +32,8 @@ def pytest_runtest_makereport(item):
         xfail = hasattr(report, 'wasxfail')
         if (report.skipped and xfail) or (report.failed and not xfail):
             file_name = report.nodeid.replace("::", "_")+".png"
-            print file_name
             base_name = os.path.basename(file_name)
             file_name = 'result/'+base_name
-            print file_name
             _capture_screenshot(file_name)
             if file_name:
                 html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \

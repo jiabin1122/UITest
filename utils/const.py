@@ -10,3 +10,4 @@ const.jmr='https://xdata.jcloud.com/rmgr/resources/res-manage/custom-resources.h
 const.jls='https://jls-console.jcloud.com/resources/pages/list.html?dataCenter=bj_02'
 const.streamhub='https://streamhub-console.jcloud.com/stream/html/list.html?dataCenter=bj_02'
 const.stream_compute='https://stream-compute-console.jcloud.com/front/joblist.html?dataCenter=bj_02'
+const.dw_sqlEditor='https://xdata.jcloud.com/dw/instance.html#/menu/taskDevelop/sqlEditor'

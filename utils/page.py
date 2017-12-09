@@ -1,3 +1,8 @@
+import  time
+
+from selenium.webdriver import ActionChains
+
+
 class Page(object):
 
     host = "https://xdata.jcloud.com/"
@@ -11,6 +16,7 @@ class Page(object):
         if path != None:
             url = self.base_url + path
         self.driver.get(url)
+        time.sleep(2)
 
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
@@ -25,7 +31,16 @@ class Page(object):
     def click(self, *loc):
         return self.find_element(*loc).click()
 
+    def mouse_send_keys(self, keys, *loc):
+        content = self.driver.find_element(*loc)
+        action = ActionChains(self.driver)
+        action.move_to_element(content).click()
+        action.send_keys(keys).perform()
 
+    def mouse_click(self, *loc):
+        content = self.driver.find_element(*loc)
+        ActionChains(self.driver).move_to_element(content).perform()
+        ActionChains(self.driver).click(content).perform()
 
 
 
