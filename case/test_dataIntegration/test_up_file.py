@@ -2,11 +2,10 @@
 # @Author  : Jiabin
 
 from selenium.webdriver.common.by import By
-from utils.browserCli import br
+from utils.browserCli import br, userName
 import os
 import time
 from utils.common import commonHttpClient
-
 
 filename = "6cols_100.txt"
 driver = br.driver
@@ -24,7 +23,7 @@ class Test_up_file():
 
     def test_up_to_tb(self):
         '''
-        上传数据至数仓
+        本地文件上传至数仓
         '''
         Test_up_file().up_file()
         br.click(By.ID, "r-cn")
@@ -40,8 +39,11 @@ class Test_up_file():
         assert "成功上传了100条记录， 总共100条记录！".decode("utf-8")  ==  alerttext
 
     def test_up_to_file(self):
+        '''
+        本地文件上传至hdfs
+        '''
         path = "/a_atest/" + filename
-        data = {"pathName":path, "recursive":True}
+        data = {"pathName":path, "recursive":"true", "instanceName":userName}
         re, status = commonHttpClient().http_request("POST", "dw/file/deleteFileOrFolder.action", data)
         print re
         Test_up_file().up_file()
