@@ -1,14 +1,11 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
+
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import wait
 from utils import const
 from utils.action import nav_scroll_down, is_element_exist
 from utils.browserCli import br
 import time
-
-from utils.page import Page
-
-__author__ = 'jiabin'
 
 driver = br.driver
 

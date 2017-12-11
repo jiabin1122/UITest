@@ -1,8 +1,8 @@
-# coding: utf-8
-from utils.browserCli import browserClient, br
-import time
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
 
-__author__ = 'jiabin'
+from utils.browserCli import br
+import time
 
 driver = br.driver
 

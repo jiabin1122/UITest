@@ -1,5 +1,6 @@
-# coding: utf-8
-#__author__ = 'jiabin'
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
+
 from selenium.webdriver.common.by import By
 from utils import const
 from utils.action import is_element_exist
@@ -40,6 +41,9 @@ class Test_dw():
         assert is_element_exist(driver, "//h3[contains(text(),'{0}')]".format(task_name))
 
     def test_task_rename(self):
+        """
+        重命名脚本
+        """
         br.mouse_move(By.XPATH, "//h3[contains(text(),'{0}')]".format(task_name))
         br.mouse_move(By.XPATH, "//dt/span[contains(text(),'...')]")
         br.mouse_click(By.XPATH, "//a[contains(text(),'重命名')]")
@@ -51,6 +55,9 @@ class Test_dw():
         assert False == is_element_exist(driver, "//h3[contains(text(),'{0}')]".format(task_name))
 
     def test_task_save_as(self):
+        """
+        脚本另存为
+        """
         br.mouse_send_keys("show databases;", By.XPATH, "//div[@class='ace_content']")
         br.click(By.XPATH, "//a[contains(text(),'另存为')]")
         br.send_keys(task_name_save_as, By.XPATH, "//input[@class='inputMode']")
@@ -61,6 +68,9 @@ class Test_dw():
         assert is_element_exist(driver,"//tr/th[contains(text(),'databaseName')]")
 
     def test_delete_task(self):
+        """
+        删除脚本
+        """
         self.task_search(task_name_rename)
         br.mouse_move(By.XPATH, "//h3[contains(text(),'{0}')]".format(task_name_rename))
         br.mouse_move(By.XPATH, "//dt/span[contains(text(),'...')]")

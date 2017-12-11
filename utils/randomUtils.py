@@ -1,4 +1,5 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
 
 import string
 import random

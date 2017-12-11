@@ -1,10 +1,9 @@
-# coding: utf-8
-__author__ = 'jiabin5'
-
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
 
 import pytest
 import os
-from utils.browserCli import browserClient, br
+from utils.browserCli import br
 
 driver = br.driver
 @pytest.fixture(scope="session", autouse=True)

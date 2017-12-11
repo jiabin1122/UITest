@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
+
 import const
 
 const.console_page='https://xdata.jcloud.com/console_page?dataCenter=bj_02'

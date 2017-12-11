@@ -1,4 +1,5 @@
-
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
 
 def is_element_exist(driver,element):
         flag=True

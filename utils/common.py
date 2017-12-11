@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
+
 import requests
 import json
 from utils.set_cookies import get_cookies

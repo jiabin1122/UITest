@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Author  : Jiabin
+# @Author: Jiabin
 
 from selenium.webdriver.common.by import By
 from utils.browserCli import br, userName
@@ -22,9 +22,9 @@ class Test_up_file():
         br.click(By.XPATH, "//a[@class='glBtn mr10']")
 
     def test_up_to_tb(self):
-        '''
+        """
         本地文件上传至数仓
-        '''
+        """
         Test_up_file().up_file()
         br.click(By.ID, "r-cn")
         br.click(By.XPATH, "//select[@class='select-box w335 overHidden']/option[@title='a_atest']")
@@ -39,9 +39,9 @@ class Test_up_file():
         assert "成功上传了100条记录， 总共100条记录！".decode("utf-8")  ==  alerttext
 
     def test_up_to_file(self):
-        '''
+        """
         本地文件上传至hdfs
-        '''
+        """
         path = "/a_atest/" + filename
         data = {"pathName":path, "recursive":"true", "instanceName":userName}
         re, status = commonHttpClient().http_request("POST", "dw/file/deleteFileOrFolder.action", data)

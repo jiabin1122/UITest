@@ -1,5 +1,5 @@
-__author__ = 'jiabin5'
-# coding: utf-8
+# -*- coding: utf-8 -*-
+# @Author: Jiabin
 
 import pytest
 
